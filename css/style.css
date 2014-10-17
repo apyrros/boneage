@@ -1,6 +1,13 @@
 div.container {
 	padding-bottom: 10px;
 }
+
+img {
+	height: 600px !important;
+	width: auto !important;
+	margin: 0px 0px 0px 0px !important;
+}
+
 div#left {
 	width: 33%;
 	float: left;
@@ -18,3 +25,6 @@ div#divReport {
 	margin-bottom: 4px;
 }
 
+#divMalePics {
+	width: 100%;
+}

@@ -1,13 +1,40 @@
 var boneage = {};
 
 $(document).ready(function() {
-	$('#divMalePics').css({'display': 'none'});
-	$(".owl-carousel").owlCarousel();
+	// $('#divMalePics').css({'display': 'none'});
+	// $('#divFemalePics').css({'display': 'none'});
+	var Males = $('#divMalePics');
+	var Females = $('#divFemalePics');
+
+	Males.owlCarousel({
+		nav: true,
+		animateIn: false,
+		// margin: '10px',
+		autoWidth: true,
+		items: 2
+	});
+	Females.owlCarousel({
+		nav: true,
+		animateIn: false,
+		center: true,
+		// margin: '10px',
+		items: 2
+	});
+
+	var owl = $('.owl-carousel');
+	owl.on('mousewheel', '.owl-stage', function (e) {
+		if (e.deltaY>0) {
+			owl.trigger('next.owl');
+		} else {
+			owl.trigger('prev.owl');
+		}
+		e.preventDefault();
+	});
 
 
-
-
-
+	boneage.update = function() {
+		//
+	};
 
 	boneage.reset = function() {
 		$('#spanGirl').css({
@@ -21,6 +48,11 @@ $(document).ready(function() {
 			'color': 'white',
 			'text-shadow': '0 0 0'
 		});
+
+		$('#inputDOB').val('');
+
+		$('#taReport').html('');
+		boneage.update();
 	};
 
 	boneage.selectAll = function() {
@@ -40,6 +72,9 @@ $(document).ready(function() {
 			'color': 'transparent',
 			'text-shadow': '0 0 2px rgba(200, 200, 200, 1)'
 		});
+
+		$('#divMalePics').css({'display': 'inline'});
+		$('#divFemalePics').css({'display': 'none'});
 	});
 
 	$('#btnGirl').click(function() {
@@ -54,6 +89,9 @@ $(document).ready(function() {
 			'color': 'transparent',
 			'text-shadow': '0 0 2px rgba(200, 200, 200, 1)'
 		});
+
+		$('#divFemalePics').css({'display': 'none'});
+		$('#divMalePics').css({'display': 'inline'});
 	});
 
 	$('#labelReport').click(function() {
