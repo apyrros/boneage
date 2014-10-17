@@ -13,6 +13,10 @@ div#left {
 	float: left;
 }
 
+div#right {
+	overflow: hidden;
+}
+
 div#divReport {
 	width: 100%;
 }

@@ -1,8 +1,8 @@
 var boneage = {};
 
 $(document).ready(function() {
-	// $('#divMalePics').css({'display': 'none'});
-	// $('#divFemalePics').css({'display': 'none'});
+	$('#divMalePics').css({'display': 'none'});
+	$('#divFemalePics').css({'display': 'none'});
 	var Males = $('#divMalePics');
 	var Females = $('#divFemalePics');
 
@@ -11,7 +11,7 @@ $(document).ready(function() {
 		animateIn: false,
 		// margin: '10px',
 		autoWidth: true,
-		items: 2
+		items: 1
 	});
 	Females.owlCarousel({
 		nav: true,
@@ -73,7 +73,7 @@ $(document).ready(function() {
 			'text-shadow': '0 0 2px rgba(200, 200, 200, 1)'
 		});
 
-		$('#divMalePics').css({'display': 'inline'});
+		$('#divMalePics').css({'display': 'block'});
 		$('#divFemalePics').css({'display': 'none'});
 	});
 
@@ -91,7 +91,7 @@ $(document).ready(function() {
 		});
 
 		$('#divFemalePics').css({'display': 'none'});
-		$('#divMalePics').css({'display': 'inline'});
+		$('#divMalePics').css({'display': 'block'});
 	});
 
 	$('#labelReport').click(function() {
