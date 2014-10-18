@@ -32,8 +32,9 @@ div#divReport {
 	background: white;
 	color: black;
 	width: 100%;
-	height: 17em;
+	height: 23em;
 	margin-bottom: 4px;
+	overflow: auto;
 }
 
 .frame {

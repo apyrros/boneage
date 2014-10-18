@@ -1,4 +1,6 @@
-var boneage = {};
+var boneage = {},
+	pt = {},
+	ref = {range: {}};
 
 $(document).ready(function() {
 	// $('#divMalePics').css({'display': 'none'});
@@ -11,6 +13,10 @@ $(document).ready(function() {
 
 	var $wrap = $frame.parent();
 	var $slidee = $frame.children('ul').eq(0);
+	var strMtoY = function(orig) {
+		return orig;
+	};
+
 
 	$frame.sly({
 		itemNav: 'basic',
@@ -39,62 +45,39 @@ $(document).ready(function() {
 		prevPage: $wrap.find('.prevPage'),
 		nextPage: $wrap.find('.nextPage')
 	});
-	// var sly = new Sly($frame, {
-	// 	horizontal: 1,
-	// 	itemNav: 'centered',
-	// 	smart: 1,
-	// 	activateOn: 'click',
-	// 	mouseDragging: 1,
-	// 	touchDragging: 1,
-	// 	releaseSwing: 1,
-	// 	startAt: 0,
-	// 	scrollBar: $scrollBar,
-	// 	scrollBy: 1,
-	// 	speed: 300,
-	// 	elasticBounds: 1,
-	// 	easing: 'easeOutExpo',
-	// 	dragHandle: 1,
-	// 	dynamicHandle: 1,
-	// 	clickBar: 1
-	// }).init();
-
-
-
-	// -------------------------------------------------------------
-	//   Centered Navigation
-	// -------------------------------------------------------------
-	// (function () {
-	// 	var $frame = $('#centered');
-	// 	var $wrap  = $frame.parent();
-
-	// 	// Call Sly on frame
-	// 	$frame.sly({
-	// 		horizontal: 1,
-	// 		itemNav: 'centered',
-	// 		smart: 1,
-	// 		activateOn: 'click',
-	// 		mouseDragging: 1,
-	// 		touchDragging: 1,
-	// 		releaseSwing: 1,
-	// 		startAt: 4,
-	// 		scrollBar: $wrap.find('.scrollbar'),
-	// 		scrollBy: 1,
-	// 		speed: 300,
-	// 		elasticBounds: 1,
-	// 		easing: 'easeOutExpo',
-	// 		dragHandle: 1,
-	// 		dynamicHandle: 1,
-	// 		clickBar: 1,
-
-	// 		// Buttons
-	// 		prev: $wrap.find('.prev'),
-	// 		next: $wrap.find('.next')
-	// 	});
-	// }());
 
 	boneage.update = function() {
-		//
+		boneage.report =
+			'<b>FINDINGS:</b><br>' +
+			'Sex: ' + pt.sex + '<br>' +
+			'Date of Birth: ' + pt.dob + '<br>' +
+			'Study Date: ' + pt.studyDate + '<br>' +
+			'Chronological Age: ' + strMtoY(pt.age) + '<br>' +
+			'<br>' +
+			'By the method of Greulich and Pyle, the bone age is estimated to be ' +
+				strMtoY(pt.boneAge) + ' (' + pt.boneAge + ' months).<br>' +
+			'<br>' +
+			'At the chronological age of ' + strMtoY(pt.age) + '( ' + pt.age + ')' +
+				', using the Brush Foundation data, the mean bone age for calculation is ' +
+				strMtoY(ref.boneAge) + ' (' + ref.boneAge + ' months).<br>' +
+			'<br>' +
+			'Two standard deviations at this age is ' + ref.stDev +
+				' months, giving a normal range of ' + strMtoY(ref.range.low) +
+				' to ' + strMtoY(ref.range.high) + ' (+/- 2 standard deviations).' + '<br>' +
+			'<br>' +
+			'<b>IMPRESSION:</b>' + '<br>' +
+			'Sex: ' + pt.sex + '<br>' +
+			'Chronological Age: ' + pt.age + '<br>' +
+			'Estimated Bone Age: ' + strMtoY(pt.boneAge) + '<br>' +
+			'<br>' +
+			'The estimated bone age is ';
+
+		$('#taReport').html(boneage.report);		//
 	};
+
+	boneage.update();
+
+
 
 	boneage.reset = function() {
 		$('#spanGirl').css({
