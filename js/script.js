@@ -1,6 +1,4 @@
-var boneage = {},
-	pt = {},
-	ref = {};
+var boneage = {};
 
 $(document).ready(function() {
 	// $('#divMalePics').css({'display': 'none'});
@@ -95,37 +93,7 @@ $(document).ready(function() {
 	// }());
 
 	boneage.update = function() {
-		// pt.sex = 'female';
-		boneage.report =
-			'FINDINGS:<br>' +
-			'Sex: ' + pt.sex + '<br>' +
-			'Date of Birth: ' + pt.dob + '<br>' +
-			'Study Date: ' + pt.studyDate + '<br>' +
-			'Chronological Age: ' + strMtoY(pt.age) + '<br>' +
-			'<br>' +
-			'By the method of Greulich and Pyle, the bone age is estimated to be ' +
-				strMtoY(pt.boneAge) + ' (' + pt.boneAge + ' months).<br>' +
-			'<br>' +
-			'At the chronological age of ' + strMtoY(pt.age) + '( ' + pt.age + ')' +
-				', using the Brush Foundation data, the mean bone age for calculation is ' +
-				strMtoY(ref.boneAge) + ' (' + ref.boneAge + ' months).<br>' +
-			'<br>' +
-			'Two standard deviations at this age is' + ref.stDev +
-				' months, giving a normal range of ' + strMtoY(ref.range['low']) +
-				' to ' + strMtoY(ref.range['high']) + ' (+/- 2 standard deviations).' + '<br>' +
-			'IMPRESSION:' + '<br>' +
-			'Sex: ' + pt.sex + '<br>' +
-			'Chronological Age: ' + pt.age + '<br>' +
-			'Estimated Bone Age: ' + strMtoY(pt.boneAge) + '<br>' +
-			 '<br>' +
-			 'The estimated bone age is ' +
-			;
-
-		$('#taReport').html(boneage.report);
-	};
-
-	strMtoY = function(orig) {
-
+		//
 	};
 
 	boneage.reset = function() {
