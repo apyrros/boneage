@@ -14,7 +14,11 @@ div#left {
 }
 
 div#right {
-	overflow: hidden;
+	/*overflow: hidden;*/
+	float: right;
+	width: 67%;
+	height: 650px;
+	/*display: block;*/
 }
 
 div#divReport {
@@ -31,4 +35,5 @@ div#divReport {
 
 #divMalePics {
 	width: 100%;
+	/*overflow: hidden;*/
 }
