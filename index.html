@@ -41,7 +41,7 @@
 
 	<div id="divReport" class="container">
 		<label id="labelReport">Report</label>
-		<div id="taReport" contenteditable="true">
+		<div id="taReport" contenteditable="false">
 			An error has occurred.
 		</div>
 		<a class="btn btn-success" id="btnSelectAll">Select All</a>
@@ -50,27 +50,29 @@
 </div id="left">
 
 <div id="right">
-
-	<div id="divMalePics">
-		<div class="male"><img src="img/male_000.png">Newborn</div>
-		<div><img src="img/male_003.png">3 months</div>
-		<div><img src="img/male_006.png">6 months</div>
-		<div><img src="img/male_009.png">9 months</div>
-		<div><img src="img/male_012.png">1 year</div>
-		<div><img src="img/male_015.png"></div>
-		<div><img src="img/male_018.png"></div>
-		<div><img src="img/male_024.png"></div>
-		<div><img src="img/male_032.png"></div>
-		<div><img src="img/male_036.png"></div>
-		<div><img src="img/male_042.png"></div>
-		<div><img src="img/male_048.png"></div>
-		<div><img src="img/male_054.png"></div>
-		<div><img src="img/male_060.png"></div>
+	<div class="frame" id="divMale">
+		<ul class="slidee">
+			<li><img src="img/male_000.png" height="600"><br>Newborn</li>
+			<li><img src="img/male_003.png"></li>
+			<li><img src="img/male_006.png"></li>
+			<li><img src="img/male_009.png"></li>
+			<li><img src="img/male_012.png"></li>
+			<li><img src="img/male_015.png"></li>
+			<li><img src="img/male_018.png"></li>
+			<li><img src="img/male_024.png"></li>
+			<li><img src="img/male_032.png"></li>
+			<li><img src="img/male_036.png"></li>
+			<li><img src="img/male_042.png"></li>
+			<li><img src="img/male_048.png"></li>
+			<li><img src="img/male_054.png"></li>
+			<li><img src="img/male_060.png"></li>
+		</ul>
 	</div>
+	<div class="scrollbar"><div class="handle"></div></div>
 
-	<div id="divFemalePics">
+<!-- 	<div class="frame" id="divFemale">
 		<div><img src="img/female_000.png">Newborn</div>
-	</div>
+	</div> -->
 
 </div id="right">
 
@@ -80,10 +82,11 @@
 
 
 
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/jquery.easing.1.3.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+
+	<script src="js/sly.min.js"></script>
 	<script src="js/script.js"></script>
 </body>
 </html>

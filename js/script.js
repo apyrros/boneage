@@ -1,13 +1,66 @@
 var boneage = {};
 
 $(document).ready(function() {
-	$('#divMalePics').css({'display': 'none'});
-	$('#divFemalePics').css({'display': 'none'});
-	var Males = $('#divMalePics');
-	var Females = $('#divFemalePics');
+	// $('#divMalePics').css({'display': 'none'});
+	// $('#divFemale').css({'display': 'none'});
+	// var Males = $('#divMalePics');
+	// var Females = $('#divFemalePics');
+
+	var $scrollBar = $('.scrollbar');
+	var $frame = $('#divMale');
+
+	var sly = new Sly($frame, {
+		horizontal: 1,
+		itemNav: 'centered',
+		smart: 1,
+		activateOn: 'click',
+		mouseDragging: 1,
+		touchDragging: 1,
+		releaseSwing: 1,
+		startAt: 0,
+		scrollBar: $scrollBar,
+		scrollBy: 1,
+		speed: 300,
+		elasticBounds: 1,
+		easing: 'easeOutExpo',
+		dragHandle: 1,
+		dynamicHandle: 1,
+		clickBar: 1
+	}).init();
 
 
 
+	// -------------------------------------------------------------
+	//   Centered Navigation
+	// -------------------------------------------------------------
+	// (function () {
+	// 	var $frame = $('#centered');
+	// 	var $wrap  = $frame.parent();
+
+	// 	// Call Sly on frame
+	// 	$frame.sly({
+	// 		horizontal: 1,
+	// 		itemNav: 'centered',
+	// 		smart: 1,
+	// 		activateOn: 'click',
+	// 		mouseDragging: 1,
+	// 		touchDragging: 1,
+	// 		releaseSwing: 1,
+	// 		startAt: 4,
+	// 		scrollBar: $wrap.find('.scrollbar'),
+	// 		scrollBy: 1,
+	// 		speed: 300,
+	// 		elasticBounds: 1,
+	// 		easing: 'easeOutExpo',
+	// 		dragHandle: 1,
+	// 		dynamicHandle: 1,
+	// 		clickBar: 1,
+
+	// 		// Buttons
+	// 		prev: $wrap.find('.prev'),
+	// 		next: $wrap.find('.next')
+	// 	});
+	// }());
 
 	boneage.update = function() {
 		//
@@ -50,8 +103,6 @@ $(document).ready(function() {
 			'text-shadow': '0 0 2px rgba(200, 200, 200, 1)'
 		});
 
-		$('#divMalePics').css({'display': 'block'});
-		$('#divFemalePics').css({'display': 'none'});
 	});
 
 	$('#btnGirl').click(function() {
@@ -67,8 +118,6 @@ $(document).ready(function() {
 			'text-shadow': '0 0 2px rgba(200, 200, 200, 1)'
 		});
 
-		$('#divFemalePics').css({'display': 'none'});
-		$('#divMalePics').css({'display': 'block'});
 	});
 
 	$('#labelReport').click(function() {
