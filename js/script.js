@@ -6,30 +6,7 @@ $(document).ready(function() {
 	var Males = $('#divMalePics');
 	var Females = $('#divFemalePics');
 
-	Males.owlCarousel({
-		nav: true,
-		animateIn: false,
-		// margin: '10px',
-		autoWidth: true,
-		items: 1
-	});
-	Females.owlCarousel({
-		nav: true,
-		animateIn: false,
-		center: true,
-		// margin: '10px',
-		items: 2
-	});
 
-	var owl = $('.owl-carousel');
-	owl.on('mousewheel', '.owl-stage', function (e) {
-		if (e.deltaY>0) {
-			owl.trigger('next.owl');
-		} else {
-			owl.trigger('prev.owl');
-		}
-		e.preventDefault();
-	});
 
 
 	boneage.update = function() {
