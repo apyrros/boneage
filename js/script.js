@@ -9,24 +9,54 @@ $(document).ready(function() {
 	var $scrollBar = $('.scrollbar');
 	var $frame = $('#divMale');
 
-	var sly = new Sly($frame, {
-		horizontal: 1,
-		itemNav: 'centered',
+	var $wrap = $frame.parent();
+	var $slidee = $frame.children('ul').eq(0);
+
+	$frame.sly({
+		itemNav: 'basic',
 		smart: 1,
 		activateOn: 'click',
 		mouseDragging: 1,
 		touchDragging: 1,
 		releaseSwing: 1,
-		startAt: 0,
-		scrollBar: $scrollBar,
+		startAt: 3,
+		scrollBar: $wrap.find('.scrollbar'),
 		scrollBy: 1,
+		pagesBar: $wrap.find('.pages'),
+		activatePageOn: 'click',
 		speed: 300,
 		elasticBounds: 1,
 		easing: 'easeOutExpo',
 		dragHandle: 1,
 		dynamicHandle: 1,
-		clickBar: 1
-	}).init();
+		clickBar: 1,
+
+		// Buttons
+		forward: $wrap.find('.forward'),
+		backward: $wrap.find('.backward'),
+		prev: $wrap.find('.prev'),
+		next: $wrap.find('.next'),
+		prevPage: $wrap.find('.prevPage'),
+		nextPage: $wrap.find('.nextPage')
+	});
+	// var sly = new Sly($frame, {
+	// 	horizontal: 1,
+	// 	itemNav: 'centered',
+	// 	smart: 1,
+	// 	activateOn: 'click',
+	// 	mouseDragging: 1,
+	// 	touchDragging: 1,
+	// 	releaseSwing: 1,
+	// 	startAt: 0,
+	// 	scrollBar: $scrollBar,
+	// 	scrollBy: 1,
+	// 	speed: 300,
+	// 	elasticBounds: 1,
+	// 	easing: 'easeOutExpo',
+	// 	dragHandle: 1,
+	// 	dynamicHandle: 1,
+	// 	clickBar: 1
+	// }).init();
 
 
 
