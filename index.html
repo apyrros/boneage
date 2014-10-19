@@ -6,7 +6,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Pediatric Bone Age</title>
 
-	<!-- css -->
 	<link href="css/style.css" rel="stylesheet">
 
 	<!-- http://bootswatch.com/superhero/ -->
@@ -22,11 +21,11 @@
 
 <body>
 
+<h1 id="header">Pediatric Bone Age Calculator</h1>
 
 <div id="left">
-	<h1 style="display:block; text-align:center">Pediatric Bone Age Calculator</h1>
 	<div id="divSex" class="container">
-		<label>Sex</label><br>
+		<label class="control-label">Sex</label><br>
 		<a class="btn btn-lg btn-info" id="btnBoy">
 			<span id="spanBoy">&#9794; Boy</span>
 		</a>
@@ -36,77 +35,117 @@
 	</div>
 
 	<div id="divDOB" class="container">
-		<label id="labelDOB" for="inputDOB">Date of Birth</label>
-		<input type="text" class="form-control input-lg" id="inputDOB" placeholder="month/day/year" style="width: 200px">
+		<label class="control-label" id="labelDOB" for="inputDOB">Date of Birth</label>
+		<input type="text" class="form-control input-lg" id="inputDOB" placeholder="month/day/year">
 	</div>
 
 	<div id="divReport" class="container">
-		<label id="labelReport">Report</label>
+		<label class="control-label" id="labelReport">Report</label>
 		<div id="taReport" contenteditable="true">
 			An error has occurred.
 		</div>
 		<a class="btn btn-success" id="btnSelectAll">Select All</a>
 		<a class="btn btn-warning" id="btnReset">Reset</a>
-	</div id="divReport">
-
+	</div>
 </div id="left">
 
-<!-- <div id="right"> -->
-	<div class="frame" id="divMale">
-		<ul class="slidee text-warning">
-			<li><img src="img/male_000.jpg"><br>Newborn</li>
-			<li><img src="img/male_003.jpg"><br>3 months</li>
-			<li><img src="img/male_006.jpg"><br>6 months</li>
-			<li><img src="img/male_009.jpg"><br>9 months</li>
-			<li><img src="img/male_012.jpg"><br>12 months</li>
-			<li><img src="img/male_015.jpg"><br>15 months</li>
-			<li><img src="img/male_018.jpg"><br>18 months</li>
-			<li><img src="img/male_024.jpg"><br>2 years</li>
-			<li><img src="img/male_032.jpg"><br>2 years, 8 months</li>
-			<li><img src="img/male_036.jpg"><br>3 years</li>
-			<li><img src="img/male_042.jpg"><br>3 years, 6 months</li>
-			<li><img src="img/male_048.jpg"><br>4 years</li>
-			<li><img src="img/male_054.jpg"><br>4 years, 6 months</li>
-			<li><img src="img/male_060.jpg"><br>5 years</li>
-			<li><img src="img/male_072.jpg"><br>6 years</li>
-			<li><img src="img/male_084.jpg"><br>7 years</li>
-			<li><img src="img/male_096.jpg"><br>8 years</li>
-			<li><img src="img/male_108.jpg"><br>9 years</li>
-			<li><img src="img/male_120.jpg"><br>10 years</li>
-			<li><img src="img/male_132.jpg"><br>11 years</li>
-			<li><img src="img/male_138.jpg"><br>11 years, 6 months</li>
-			<li><img src="img/male_150.jpg"><br>12 years, 6 months</li>
-			<li><img src="img/male_156.jpg"><br>13 years</li>
-			<li><img src="img/male_162.jpg"><br>13 years, 6 months</li>
-			<li><img src="img/male_168.jpg"><br>14 years</li>
-			<li><img src="img/male_180.jpg"><br>15 years</li>
-			<li><img src="img/male_186.jpg"><br>15 years, 6 months</li>
-			<li><img src="img/male_192.jpg"><br>16 years</li>
-			<li><img src="img/male_204.jpg"><br>17 years</li>
-			<li><img src="img/male_216.jpg"><br>18 years</li>
-			<li><img src="img/male_228.jpg"><br>19 years</li>
-		</ul>
-	<!-- </div> -->
+<div id="right">
+	<div class="wrap">
 
-<!-- 	<div class="frame" id="divFemale">
-		<div><img src="img/female_000.jpg">Newborn</div>
-	</div> -->
+		<h2 id="h2Instructions">
+			<ol>
+				<li>Select the child's sex</li>
+				<li>Enter the date of birth</li>
+				<li>Identify the closest matching image</li>
+			</ol>
+		</h2>
 
+		<div class="frame" id="divBoy">
+			<ul class="slidee text-warning">
+				<li><img src="img/male_000.jpg"><br>Newborn →</li>
+				<li><img src="img/male_003.jpg"><br>← 3 months →</li>
+				<li><img src="img/male_006.jpg"><br>← 6 months →</li>
+				<li><img src="img/male_009.jpg"><br>← 9 months →</li>
+				<li><img src="img/male_012.jpg"><br>← 12 months →</li>
+				<li><img src="img/male_015.jpg"><br>← 15 months →</li>
+				<li><img src="img/male_018.jpg"><br>← 18 months →</li>
+				<li><img src="img/male_024.jpg"><br>← 2 years →</li>
+				<li><img src="img/male_032.jpg"><br>← 2 years, 8 months →</li>
+				<li><img src="img/male_036.jpg"><br>← 3 years →</li>
+				<li><img src="img/male_042.jpg"><br>← 3 years, 6 months →</li>
+				<li><img src="img/male_048.jpg"><br>← 4 years →</li>
+				<li><img src="img/male_054.jpg"><br>← 4 years, 6 months →</li>
+				<li><img src="img/male_060.jpg"><br>← 5 years →</li>
+				<li><img src="img/male_072.jpg"><br>← 6 years →</li>
+				<li><img src="img/male_084.jpg"><br>← 7 years →</li>
+				<li><img src="img/male_096.jpg"><br>← 8 years →</li>
+				<li><img src="img/male_108.jpg"><br>← 9 years →</li>
+				<li><img src="img/male_120.jpg"><br>← 10 years →</li>
+				<li><img src="img/male_132.jpg"><br>← 11 years →</li>
+				<li><img src="img/male_138.jpg"><br>← 11 years, 6 months →</li>
+				<li><img src="img/male_150.jpg"><br>← 12 years, 6 months →</li>
+				<li><img src="img/male_156.jpg"><br>← 13 years →</li>
+				<li><img src="img/male_162.jpg"><br>← 13 years, 6 months →</li>
+				<li><img src="img/male_168.jpg"><br>← 14 years →</li>
+				<li><img src="img/male_180.jpg"><br>← 15 years →</li>
+				<li><img src="img/male_186.jpg"><br>← 15 years, 6 months →</li>
+				<li><img src="img/male_192.jpg"><br>← 16 years →</li>
+				<li><img src="img/male_204.jpg"><br>← 17 years →</li>
+				<li><img src="img/male_216.jpg"><br>← 18 years →</li>
+				<li><img src="img/male_228.jpg"><br>← 19 years</li>
+			</ul>
+		</div class="frame" id="divBoy">
+
+		<div class="frame" id="divGirl">
+			<ul class="slidee text-warning">
+				<li><img src="img/female_000.jpg"><br>Newborn →</li>
+				<li><img src="img/female_003.jpg"><br>← 3 months →</li>
+				<li><img src="img/female_006.jpg"><br>← 6 months →</li>
+				<li><img src="img/female_009.jpg"><br>← 9 months →</li>
+				<li><img src="img/female_012.jpg"><br>← 12 months →</li>
+				<li><img src="img/female_015.jpg"><br>← 15 months →</li>
+				<li><img src="img/female_018.jpg"><br>← 18 months →</li>
+				<li><img src="img/female_024.jpg"><br>← 2 years →</li>
+				<li><img src="img/female_030.jpg"><br>← 2 years, 6 months →</li>
+				<li><img src="img/female_036.jpg"><br>← 3 years →</li>
+				<li><img src="img/female_042.jpg"><br>← 3 years, 6 months →</li>
+				<li><img src="img/female_050.jpg"><br>← 4 years, 2 months →</li>
+				<li><img src="img/female_060.jpg"><br>← 5 years →</li>
+				<li><img src="img/female_069.jpg"><br>← 5 years, 9 months →</li>
+				<li><img src="img/female_082.jpg"><br>← 6 years, 10 months →</li>
+				<li><img src="img/female_094.jpg"><br>← 7 years, 10 months →</li>
+				<li><img src="img/female_106.jpg"><br>← 8 years, 10 months →</li>
+				<li><img src="img/female_120.jpg"><br>← 10 years →</li>
+				<li><img src="img/female_132.jpg"><br>← 11 years →</li>
+				<li><img src="img/female_144.jpg"><br>← 12 years →</li>
+				<li><img src="img/female_156.jpg"><br>← 13 years →</li>
+				<li><img src="img/female_162.jpg"><br>← 13 years, 6 months →</li>
+				<li><img src="img/female_168.jpg"><br>← 14 years →</li>
+				<li><img src="img/female_180.jpg"><br>← 15 years →</li>
+				<li><img src="img/female_192.jpg"><br>← 16 years →</li>
+				<li><img src="img/female_204.jpg"><br>← 17 years →</li>
+				<li><img src="img/female_216.jpg"><br>← 18 years</li>
+			</ul>
+		</div class="frame" id="divGirl">
+
+		<!-- common scrollbar, initiated uniquely for boys and girls -->
+		<div class="scrollbar" id="sbCommon">
+			<div class="handle"></div>
+		</div>
+
+	</div class="wrap">
 </div id="right">
 
+<!-- jQuery: http://jquery.com/ -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!-- jQuery Easing: http://gsgd.co.uk/sandbox/jquery/easing/ -->
+<script src="js/jquery.easing.1.3.js"></script>
+<!-- Bootstrap: http://getbootstrap.com/getting-started/#download -->
+<script src="js/bootstrap.min.js"></script>
+<!-- Sly Carousel: http://darsa.in/sly/ -->
+<script src="js/sly.min.js"></script>
+<script src="js/script.js"></script>
 
-
-
-
-
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<!-- http://gsgd.co.uk/sandbox/jquery/easing/ -->
-	<script src="js/jquery.easing.1.3.js"></script>
-	<!-- http://getbootstrap.com/getting-started/#download -->
-	<script src="js/bootstrap.min.js"></script>
-	<!-- http://darsa.in/sly/ -->
-	<script src="js/sly.min.js"></script>
-	<script src="js/script.js"></script>
 </body>
+
 </html>

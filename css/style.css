@@ -1,47 +1,8 @@
-div.container {
-	padding-bottom: 10px;
-}
-
-img {
-	height: 640px !important;
-	width: auto !important;
-	margin: 0px 0px 0px 0px !important;
-	user-drag: none;
-	-moz-user-select: none;
-	-webkit-user-drag: none;
-}
-
-div#left {
-	width: 33%;
-	float: left;
-}
-
-div#right {
-	/*overflow: hidden;*/
-	float: right;
-	width: 67%;
-	/*height: 650px;*/
-	/*display: block;*/
-}
-
-div#divReport {
-	width: 100%;
-}
-
-#taReport {
-	background: white;
-	color: black;
-	width: 100%;
-	height: 23em;
-	margin-bottom: 4px;
-	overflow: auto;
-}
-
 .frame {
-	width: 400px;
+/*	width: 400px;
 	height: 660px;
 	overflow: hidden;
-	outline: 1px solid #aaa;
+	outline: 1px solid #aaa;*/
 }
 .slidee {
 	list-style: none;
@@ -54,3 +15,83 @@ div#divReport {
 	padding: 0;
 	text-align: center;
 }
+
+.scrollbar {
+	margin: 5px 0 0 0;
+	height: 2px;
+	background: #4e5d6c;
+	line-height: 0;
+}
+
+.scrollbar .handle {
+	height: 100%;
+	background: #f0ad4e;
+	cursor: pointer;
+}
+
+.wrap {
+	position: relative;
+	margin: 1em 0;
+	width: 400px;
+	height: 670px;
+	overflow: hidden;
+	outline: 1px solid #4e5d6c;
+}
+
+img {
+	height: 640px !important;
+	width: auto !important;
+	margin: 0px 0px 0px 0px !important;
+	user-drag: none;
+	-moz-user-select: none;
+	-webkit-user-drag: none;
+}
+
+div.container {
+	padding-bottom: 10px;
+}
+
+div#left {
+	width: 33%;
+	float: left;
+}
+
+div#right {
+	float: right;
+	width: 67%;
+	padding-left: 20px;
+}
+
+#header {
+	display: block;
+	text-align: left;
+}
+
+div#divReport {
+	width: 100%;
+}
+
+#divBoy {
+	font-weight: bold;
+	display: none;
+}
+
+#divGirl {
+	font-weight: bold;
+	display: none;
+}
+
+#taReport {
+	background: white;
+	color: black;
+	width: 100%;
+	height: 23em;
+	margin-bottom: 4px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+#inputDOB {
+	width: 200px;
+}
+
