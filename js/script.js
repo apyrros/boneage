@@ -100,8 +100,6 @@ $(document).ready(function() {
 			ref.concl = 'normal';
 		}
 
-		console.log(ref.stdev);
-
 	};
 
 	boneage.update = function() {
