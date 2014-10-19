@@ -3,10 +3,14 @@ var undef = '***',
 	pt = {sex: undef},
 	ref = {
 		male: {
-			ages: [0,3,6,9,12,15,18,24,32,36,42,48,54,60,72,84,96,108,120,132,138,150,156,162,168,180,186,192,204,216,228]
+			ages: [0,3,6,9,12,15,18,24,32,36,42,48,54,60,72,84,96,108,120,132,138,150,156,162,168,180,186,192,204,216,228],
+			BFages: [3,6,9,12,18,24,30,36,42,48,54,60,72,84,96,108,120,132,144,156,168,180,192,204],
+			BFstdevs: [0.69,1.13,1.43,1.97,3.52,3.92,4.52,5.08,5.4,6.66,8.36,8.79,9.17,8.91,9.1,9,9.79,10.09,10.38,10.44,10.72,11.32,12.86,13.05]
 		},
 		female: {
-			ages: [0,3,6,9,12,15,18,24,30,36,42,50,60,69,82,94,106,120,132,144,156,162,168,180,192,204,216]
+			ages: [0,3,6,9,12,15,18,24,30,36,42,50,60,69,82,94,106,120,132,144,156,162,168,180,192,204,216],
+			BFages: [3,6,9,12,18,24,30,36,42,48,54,60,72,84,96,108,120,132,144,156,168,180,192],
+			BFstdevs: [0.72,1.16,1.36,1.77,3.49,4.64,5.37,5.97,7.48,8.98,10.73,11.65,10.23,9.64,10.23,10.74,11.73,11.94,10.24,10.67,11.3,9.23,7.31]
 		},
 		range: {}
 	},
@@ -46,10 +50,10 @@ $(document).ready(function() {
 
 	// get ref.age (for calculation)
 	ref.getAge = function() {
-		if (pt.sex === 'male' || pt.sex === 'female') {
-			for (i = 0, len = ref[pt.sex].ages.length; i < len; i++) {
-				if (ref.age === undef || Math.abs(ref[pt.sex].ages[i] - pt.age) < Math.abs(ref.age - pt.age)) {
-					ref.age = ref[pt.sex].ages[i];
+		if ( pt.age !== undef && (pt.sex === 'male' || pt.sex === 'female') ) {
+			for (i = 0, len = ref[pt.sex].BFages.length; i < len; i++) {
+				if (ref.age === undef || Math.abs(ref[pt.sex].BFages[i] - pt.age) < Math.abs(ref.age - pt.age)) {
+					ref.age = ref[pt.sex].BFages[i];
 				}
 			}
 		} else {
@@ -77,10 +81,27 @@ $(document).ready(function() {
 	ref.getStDev = function() {
 		if ( isNaN(pt.boneAge) || isNaN(ref.age) ) {
 			ref.concl = undef;
-			ref.stDevText = undef;
-		} else {
-
+			ref.stdev = undef;
+			ref.range = {};
+			return;
 		}
+
+		ref.stdev = ref.male.BFstdevs[ref.male.BFages.indexOf(ref.age)];
+		ref.range.low = (ref.age - (2 * ref.stdev)).toFixed(2);
+		ref.range.high = (ref.age + (2 * ref.stdev)).toFixed(2);
+
+		if (pt.boneAge < ref.range.low) {
+			ref.concl = '<span class="text-primary"><strong>delayed</strong></span> (' + ( (ref.age - pt.boneAge) / ref.stdev ).toFixed(1) +
+				' standard deviations below the mean)';
+		} else if (pt.boneAge > ref.range.high) {
+			ref.concl = '<span class="text-primary"><strong>advanced</strong></span> (' + ( (pt.boneAge) / ref.stdev ).toFixed(1) +
+				' standard deviations above the mean)';
+		} else {
+			ref.concl = 'normal';
+		}
+
+		console.log(ref.stdev);
+
 	};
 
 	boneage.update = function() {
@@ -106,7 +127,7 @@ $(document).ready(function() {
 				', using the Brush Foundation data, the mean bone age for calculation is ' +
 				strMtoY(ref.age) + '.<br>' +
 			'<br>' +
-			'Two standard deviations at this age is ' + ref.stDev +
+			'Two standard deviations at this age is ' + ref.stdev +
 				' months, giving a normal range of ' + strMtoY(ref.range.low) +
 				' to ' + strMtoY(ref.range.high) + ' (+/- 2 standard deviations).' + '<br>' +
 			'<br>' +
@@ -115,8 +136,7 @@ $(document).ready(function() {
 			'Chronological Age: ' + strMtoY(pt.age) + '<br>' +
 			'Estimated Bone Age: ' + strMtoY(pt.boneAge) + '<br>' +
 			'<br>' +
-			'The estimated bone age is ' + ref.concl + ' (' +
-				ref.stDevText+').';
+			'The estimated bone age is ' + ref.concl + '.';
 
 		$('#taReport').html(boneage.report);		//
 	};
@@ -160,7 +180,7 @@ $(document).ready(function() {
 		if (ageMonths < 24) {
 			return ageMonths + ' months';
 		} else {
-			return Math.floor(ageMonths/12) + ' years, ' + (ageMonths % 12) + ' months';
+			return Math.floor(ageMonths/12) + ' years, ' + Math.round(ageMonths % 12) + ' months';
 		}
 	}
 
