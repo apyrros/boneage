@@ -135,7 +135,7 @@ $(document).ready(function() {
 			'text-shadow': '0 0 0'
 		});
 
-		pt.sex = '';
+		pt.sex = undef;
 
 		$('#inputDOB').val('');
 		$('#taReport').html('');
