@@ -285,7 +285,15 @@ $(document).ready(function() {
 		boneage.reset();
 	});
 
-
 	boneage.update();
+
+	// prevent images from being dragged (vertically), e.g. into taReport
+	// chrome/IE obey css rules, firefox does not
+	// if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+		$('img').on( 'dragstart', function() {
+			return false;
+		});
+	// }
+
 
 });
