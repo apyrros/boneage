@@ -71,7 +71,7 @@ $(document).ready(function() {
 				case 'month':
 					return dp.month.rel.activeItem;
 				case 'day':
-					return dp.day.rel.activeItem || d.getDate() - 1;
+					return dp.day.rel.activeItem;
 			}
 			return new Date(dp.selected('year'), dp.selected('month'), dp.selected('day') + 1);
 		};
