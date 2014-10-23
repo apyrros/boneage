@@ -325,10 +325,31 @@ $(document).ready(function() {
 	// prevent images from being dragged (vertically), e.g. into taReport
 	// chrome/IE obey css rules, firefox does not
 	// if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
-		$('img').on( 'dragstart', function() {
-			return false;
-		});
+	$('img').on( 'dragstart', function() {
+		return false;
+	});
 	// }
+
+	(function popoverInit() {
+		var imgNumber, imgHTML;
+		for (i = 0, len = ref.male.ages.length; i < len; i++) {
+			imgNumber = ref.male.ages[i];
+			while (String(imgNumber).length < 3) {
+				imgNumber = '0' + imgNumber;
+			}
+			imgHTML = '<img src="img/male_' + imgNumber + '.jpg" style="transform: scale(1.3)" />';
+			$('#m_' + imgNumber).popover({content: imgHTML, placement: 'top', html: true, container: 'div#right', trigger: 'focus'});
+		}
+
+		for (i = 0, len = ref.female.ages.length; i < len; i++) {
+			imgNumber = ref.female.ages[i];
+			while (String(imgNumber).length < 3) {
+				imgNumber = '0' + imgNumber;
+			}
+			imgHTML = '<img src="img/female_' + imgNumber + '.jpg" style="transform: scale(1.3)" />';
+			$('#f_' + imgNumber).popover({content: imgHTML, placement: 'top', html: true, container: 'div#right', trigger: 'focus'});
+		}
+	}());
 
 	boneage.update();
 
