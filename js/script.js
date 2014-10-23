@@ -67,11 +67,15 @@ $(document).ready(function() {
 
 	pt.getAge = function() {
 		if (pt.DOBparsed) {
-			pt.ageMonth = +pt.DOBparsed[1];
-			pt.ageYear = +pt.DOBparsed[3];
-			if (pt.ageYear < 100) pt.ageYear += 1900;
-			if (pt.ageYear < 1930) pt.ageYear += 100;
-			pt.age = (ref.month + (12 * ref.year)) - (pt.ageMonth + (12 * pt.ageYear));
+			pt.birthMonth = +pt.DOBparsed[1];
+			pt.birthDay = +pt.DOBparsed[2];
+			pt.birthYear = +pt.DOBparsed[3];
+			if (pt.birthYear < 100) pt.birthYear += 1900;
+			if (pt.birthYear < 1930) pt.birthYear += 100;
+			pt.age = (ref.month + (12 * ref.year)) - (pt.birthMonth + (12 * pt.birthYear));
+			if (ref.day - pt.birthDay > 14) {
+				pt.age += 1;
+			}
 		} else {
 			pt.age = undef;
 		}
@@ -206,16 +210,10 @@ $(document).ready(function() {
 			clickBar: 1
 		}).init();
 
-		// SlyCarousel.on('load', function() {
-		// 	boneage.update();
-		// });
-
 		SlyCarousel.on('move', function() {
 			boneage.update();
 		});
 	}
-
-
 
 	$('#btnBoy').click(function() {
 		$('#h2Instructions').css({'display': 'none'});
@@ -294,6 +292,5 @@ $(document).ready(function() {
 			return false;
 		});
 	// }
-
 
 });
