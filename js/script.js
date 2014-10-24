@@ -167,6 +167,9 @@ $(document).ready(function() {
 		$('#divBoy').css({'display': 'none'});
 		$('#divGirl').css({'display': 'none'});
 
+		document.getElementById('taReport').focus();
+		document.execCommand('unselect');
+
 		boneage.update();
 	};
 
