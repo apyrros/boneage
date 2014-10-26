@@ -94,3 +94,7 @@ div#divReport {
 #inputDOB {
 	width: 200px;
 }
+
+#references {
+	cursor: pointer;
+}
