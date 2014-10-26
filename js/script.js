@@ -283,6 +283,10 @@ $(document).ready(function() {
 		boneage.reset();
 	});
 
+	$('#references').popover({
+		html: true
+	});
+
 	// prevent images from being dragged (vertically), e.g. into taReport
 	// chrome/IE obey css rules, firefox does not
 	// if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
