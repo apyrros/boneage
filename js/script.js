@@ -286,6 +286,10 @@ $(document).ready(function() {
 		boneage.reset();
 	});
 
+	$('#references').popover({
+		html: true
+	});
+
 	boneage.update();
 
 	// prevent images from being dragged (vertically), e.g. into taReport
