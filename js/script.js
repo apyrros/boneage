@@ -52,15 +52,13 @@ $(document).ready(function() {
 			'<br>' +
 			'The estimated bone age is ' + ref.concl + '.';
 
-		$('#taReport').html(boneage.report);		//
+		$('#taReport').html(boneage.report);
 	};
 
 	pt.getDOB = function() {
 		pt.DOBparsed = undef;
 		pt.DOB = $('#inputDOB').val();
-		if (pt.DOB === '') {
-			pt.DOB = undef;
-		}
+		if (pt.DOB === '') pt.DOB = undef;
 		pt.reDOB = /([0-9]+)[/-]([0-9]+)[/-]([0-9]+)/g;
 		pt.DOBparsed = pt.reDOB.exec(pt.DOB);
 	};
@@ -108,13 +106,8 @@ $(document).ready(function() {
 		ref.day = Today.getDate();
 		ref.year = Today.getFullYear();
 
-		if (ref.day < 10) {
-			ref.day = '0' + ref.day;
-		}
-
-		if(ref.month < 10) {
-			ref.month = '0' + ref.month;
-		}
+		if (ref.day < 10) ref.day = '0' + ref.day;
+		if (ref.month < 10) ref.month = '0' + ref.month;
 
 		ref.today = ref.month + '/' + ref.day + '/' + ref.year;
 	};
@@ -140,7 +133,6 @@ $(document).ready(function() {
 		} else {
 			ref.concl = 'normal';
 		}
-
 	};
 
 	boneage.reset = function() {
@@ -167,15 +159,18 @@ $(document).ready(function() {
 		$('#divBoy').css({'display': 'none'});
 		$('#divGirl').css({'display': 'none'});
 
-		document.getElementById('taReport').focus();
-		document.execCommand('unselect');
-
+		boneage.unSelectAll();
 		boneage.update();
 	};
 
 	boneage.selectAll = function() {
 		document.getElementById('taReport').focus();
 		document.execCommand('SelectAll');
+	};
+
+	boneage.unSelectAll = function() {
+		document.getElementById('taReport').focus();
+		document.execCommand('unselect');
 	};
 
 	function strMtoY(ageMonths) {
@@ -240,6 +235,7 @@ $(document).ready(function() {
 		pt.sex = 'male';
 
 		boneage.update();
+		boneage.unSelectAll();
 	});
 
 	$('#btnGirl').click(function() {
@@ -264,6 +260,11 @@ $(document).ready(function() {
 		pt.sex = 'female';
 
 		boneage.update();
+		boneage.unSelectAll();
+	});
+
+	$('#labelDOB').click(function() {
+		$('#inputDOB').select();
 	});
 
 	$('#inputDOB').on('input', function() {
@@ -274,10 +275,6 @@ $(document).ready(function() {
 		boneage.selectAll();
 	});
 
-	$('#labelDOB').click(function() {
-		$('#inputDOB').select();
-	});
-
 	$('#btnSelectAll').click(function() {
 		boneage.selectAll();
 	});
@@ -286,8 +283,6 @@ $(document).ready(function() {
 		boneage.reset();
 	});
 
-	boneage.update();
-
 	// prevent images from being dragged (vertically), e.g. into taReport
 	// chrome/IE obey css rules, firefox does not
 	// if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
@@ -295,5 +290,7 @@ $(document).ready(function() {
 			return false;
 		});
 	// }
+
+	boneage.update();
 
 });
