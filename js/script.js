@@ -1,3 +1,7 @@
+/*global document, $, Sly */
+/*jshint globalstrict: true*/
+"use strict";
+
 var undef = '***',
 	boneage = {},
 	pt = {sex: undef},
@@ -19,7 +23,6 @@ var undef = '***',
 $(document).ready(function() {
 
 	boneage.update = function() {
-		var i, len;
 		pt.getDOB();
 		ref.getToday();
 		pt.getAge();
@@ -89,6 +92,7 @@ $(document).ready(function() {
 
 	// get ref.age (for calculation)
 	ref.getAge = function() {
+		var i, len;
 		if ( pt.age !== undef && (pt.sex === 'male' || pt.sex === 'female') ) {
 			for (i = 0, len = ref[pt.sex].BFages.length; i < len; i++) {
 				if (ref.age === undef || Math.abs(ref[pt.sex].BFages[i] - pt.age) < Math.abs(ref.age - pt.age)) {
@@ -180,7 +184,7 @@ $(document).ready(function() {
 		if (ageMonths < 24) {
 			return ageMonths + ' months';
 		} else {
-			return Math.floor(ageMonths/12) + ' years, ' + Math.round(ageMonths % 12) + ' months';
+			return Math.floor(ageMonths / 12) + ' years, ' + Math.round(ageMonths % 12) + ' months';
 		}
 	}
 
