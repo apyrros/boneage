@@ -64,6 +64,13 @@ $(document).ready(function() {
 		if (pt.DOB === '') pt.DOB = undef;
 		pt.reDOB = /([0-9]+)[/-]([0-9]+)[/-]([0-9]+)/g;
 		pt.DOBparsed = pt.reDOB.exec(pt.DOB);
+		if (pt.DOB !== undef && !$('#inputDOB').is(":focus")) {
+			if (pt.DOBparsed[1] < 1 || pt.DOBparsed[1] > 12 || pt.DOBparsed[2] < 1 || pt.DOBparsed[2] > 31 || ( pt.DOBparsed[3] > 99 && pt.DOBparsed[3] < 1900 )) {
+				$('#inputDOB').tooltip('show');
+			} else {
+				$('#inputDOB').tooltip('hide');
+			}
+		}
 	};
 
 	pt.getAge = function() {
@@ -289,6 +296,14 @@ $(document).ready(function() {
 
 	$('#references').popover({
 		html: true
+	});
+
+	$('#inputDOB').blur(function() {
+		pt.getDOB();
+	});
+
+	$('#inputDOB').tooltip({
+		trigger: 'manual'
 	});
 
 	// prevent images from being dragged (vertically), e.g. into taReport
