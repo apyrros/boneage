@@ -64,6 +64,13 @@ $(document).ready(function() {
 		if (pt.DOB === '') pt.DOB = undef;
 		pt.reDOB = /([0-9]+)[/-]([0-9]+)[/-]([0-9]+)/g;
 		pt.DOBparsed = pt.reDOB.exec(pt.DOB);
+		if (pt.DOB !== undef && !$('#inputDOB').is(":focus")) {
+			if (/[^0-9\/-]/.exec(pt.DOB) || pt.DOBparsed[1] < 1 || pt.DOBparsed[1] > 12 || pt.DOBparsed[2] < 1 || pt.DOBparsed[2] > 31 || ( pt.DOBparsed[3] > 99 && pt.DOBparsed[3] < 1900 )) {
+				$('#inputDOB').tooltip('show');
+			} else {
+				$('#inputDOB').tooltip('hide');
+			}
+		}
 	};
 
 	pt.getAge = function() {
@@ -177,6 +184,7 @@ $(document).ready(function() {
 		document.execCommand('unselect');
 	};
 
+	// convert age from months to years, months
 	function strMtoY(ageMonths) {
 		if ( ageMonths === undef || isNaN(ageMonths) ) {
 			return undef;
@@ -273,6 +281,29 @@ $(document).ready(function() {
 
 	$('#inputDOB').on('input', function() {
 		boneage.update();
+		// display error tooltip if invalid DOB
+		if (pt.DOB !== undef && pt.DOB !== null) {
+			if (
+				pt.DOBparsed &&
+				!/[^0-9\/-]/.exec(pt.DOB) &&
+				(pt.DOBparsed[1] > 0 && pt.DOBparsed[1] < 13) &&
+				(pt.DOBparsed[2] > 0 && pt.DOBparsed[2] < 32) &&
+				(pt.DOBparsed[3] < 99 || pt.DOBparsed[3] > 1900)
+			) {
+				$('#inputDOB').tooltip('hide');
+			}
+		} else if (pt.DOB === undef) {
+			$('#inputDOB').tooltip('hide');
+		}
+	});
+
+	$('#inputDOB').blur(function() {
+		pt.getDOB();
+	});
+
+	$('#inputDOB').tooltip({
+		trigger: 'manual',
+		html: true
 	});
 
 	$('#labelReport').click(function() {

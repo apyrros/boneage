@@ -95,6 +95,14 @@ div#divReport {
 	width: 200px;
 }
 
+.tooltip.right .tooltip-inner {
+	background-color: #df691a;
+}
+
+.tooltip.right .tooltip-arrow {
+	border-right-color: #df691a !important;
+}
+
 #references {
 	cursor: pointer;
 }
