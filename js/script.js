@@ -131,7 +131,7 @@ $(document).ready(function() {
 			return;
 		}
 
-		ref.stdev = ref.male.BFstdevs[ref.male.BFages.indexOf(ref.age)];
+		ref.stdev = ref[pt.sex].BFstdevs[ ref[pt.sex].BFages.indexOf(ref.age) ];
 		ref.range.low = (ref.age - (2 * ref.stdev)).toFixed(2);
 		ref.range.high = (ref.age + (2 * ref.stdev)).toFixed(2);
 
