@@ -176,9 +176,6 @@ $(document).ready(function() {
 			'Date of Birth: ' + pt.DOB + '<br>' +
 			'Chronological Age: ' + strMtoY(pt.age) + '<br>' +
 			'<br>' +
-			'By the method of Greulich and Pyle, the bone age is estimated to be ' +
-				strMtoY(pt.boneAge) + '.<br>' +
-			'<br>' +
 			'At the chronological age of ' + strMtoY(pt.age) +
 				', using the Brush Foundation data, the mean bone age for calculation is ' +
 				strMtoY(ref.age) + '.<br>' +
@@ -187,8 +184,10 @@ $(document).ready(function() {
 				' months, giving a normal range of ' + strMtoY(ref.range.low) +
 				' to ' + strMtoY(ref.range.high) + ' (+/- 2 standard deviations).' + '<br>' +
 			'<br>' +
+			'By the method of Greulich and Pyle, the bone age is estimated to be ' +
+				strMtoY(pt.boneAge) + '.<br>' +
+			'<br>' +
 			'<b>IMPRESSION:</b>' + '<br>' +
-			'Sex: ' + pt.sex + '<br>' +
 			'Chronological Age: ' + strMtoY(pt.age) + '<br>' +
 			'Estimated Bone Age: ' + strMtoY(pt.boneAge) + '<br>' +
 			'<br>' +
