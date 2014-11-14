@@ -18,9 +18,148 @@ var undef = '***',
 		},
 		range: {}
 	},
-	SlyCarousel = {};
+	SlyCarousel = {},
+	dp = {};
 
 $(document).ready(function() {
+
+	// DATE PICKER CAROUSEL
+	(function datepickerInit() {
+		var config = {
+			years: {
+				min: new Date().getFullYear() - 25,
+				max: new Date().getFullYear()
+			},
+			// years: 6, // alternative for last 6 years from now
+			// startAt: {
+			// 	year: 2014,
+			// 	month: 0,	// starting at 0
+			// 	day: 0		// starting at 0
+			// }
+			// startAt: null // alternative for starting at now
+		};
+
+		// function to retrieve the selected date (try it in console)
+		// selected();        // return the whole selection as a Date object
+		// selected('year');  // selected year
+		// selected('month'); // month, starting at 0
+		// selected('day');   // day, starting at 0
+
+		// DATE PICKER IMPLEMENTATION
+		var $picker = $('.date-picker');
+		var d = new Date();
+		var options = {
+			itemNav: 'forceCentered',
+			smart: 1,
+			activateMiddle: 1,
+			activateOn: 'click',
+			mouseDragging: 1,
+			touchDragging: 1,
+			releaseSwing: 1,
+			startAt: 0,
+			scrollBy: 1,
+			speed: 100,
+			elasticBounds: 1,
+			easing: 'swing'
+		};
+
+		// return selected date
+		dp.selected = function (type) {
+			switch (type) {
+				case 'year':
+					return $(dp.year.items[dp.year.rel.activeItem].el).data('year') | 0;
+				case 'month':
+					return dp.month.rel.activeItem;
+				case 'day':
+					return dp.day.rel.activeItem;
+			}
+			return new Date(dp.selected('year'), dp.selected('month'), dp.selected('day') + 1);
+		};
+
+		// MONTH
+		var $month = $picker.find('.month');
+		dp.month = new Sly($month, options);
+
+		// populate with months
+		var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+		var shortMonths = [1, 3, 5, 8, 10];
+		$month.find('ul').append(months.map(dataLI('month')).join(''));
+
+		// DAY
+		var $day = $picker.find('.day');
+		var $daySlidee = $day.find('ul');
+		dp.day = new Sly($day, options);
+
+		// YEAR
+		var $year = $picker.find('.year');
+		dp.year = new Sly($year, options);
+
+		// populate with years
+		var years = [];
+		var simple = typeof config.years === 'number';
+		var y = simple ? d.getFullYear() : config.years.min;
+		// var y = simple ? d.getFullYear() : config.years.max;
+		var max = simple ? d.getFullYear() : config.years.max;
+		while (y < max + 1) years.push(y++);
+		// var min = simple ? d.getFullYear() - config.years : config.years.min;
+		// while (y > min) years.push(y--);
+		$year.find('ul').append(years.map(dataLI('year')).join(''));
+
+		// dynamic days
+		dp.year.on('active', updateDays);
+		dp.month.on('active', updateDays);
+
+		dp.year.on('move', function() {
+			boneage.update();
+		});
+		dp.month.on('move', function() {
+			boneage.update();
+		});
+		dp.day.on('move', function() {
+			boneage.update();
+		});
+
+
+		function updateDays() {
+			var month = dp.selected('month');
+			var days = 31;
+			if (~$.inArray(month, shortMonths)) {
+				if (month === 1) days = isLeapYear(dp.selected('year')) ? 29 : 28;
+				else days = 30;
+			}
+			var i = 0;
+			var items = [];
+			while (++i <= days) items.push(i);
+			$daySlidee
+				.empty()
+				.html(items.map(dataLI('day', dp.selected('day'))).join(''));
+			dp.day.reload();
+		}
+
+		// initiate sly isntances
+		var initial = config.startAt;
+		dp.year.init().activate($.inArray(initial ? initial.year : d.getFullYear(), years));
+		dp.month.init().activate(initial ? initial.month : d.getMonth());
+		dp.day.init().activate(initial ? initial.day : d.getDate() - 1);
+
+		// HELPERS
+		function isLeapYear(year) {
+			return ((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0);
+		}
+
+		// returns an item to <li> string mapping function
+		function dataLI(type, active) {
+			return function (item, i) {
+				return '<li ' +
+					'data-' + type + '="' + item + '" ' +
+					'class="' + (i === active ? 'active' : '') + '"' +
+					'>' + item + '</li>';
+			};
+		}
+
+		// expose selected function so you can try it out
+		// window.selected = selected;
+	})();
 
 	boneage.update = function() {
 		pt.getDOB();
@@ -59,18 +198,12 @@ $(document).ready(function() {
 	};
 
 	pt.getDOB = function() {
-		pt.DOBparsed = undef;
-		pt.DOB = $('#inputDOB').val();
-		if (pt.DOB === '') pt.DOB = undef;
-		pt.reDOB = /([0-9]+)[/-]([0-9]+)[/-]([0-9]+)/g;
-		pt.DOBparsed = pt.reDOB.exec(pt.DOB);
-		if (pt.DOB !== undef && !$('#inputDOB').is(":focus")) {
-			if (/[^0-9\/-]/.exec(pt.DOB) || pt.DOBparsed[1] < 1 || pt.DOBparsed[1] > 12 || pt.DOBparsed[2] < 1 || pt.DOBparsed[2] > 31 || ( pt.DOBparsed[3] > 99 && pt.DOBparsed[3] < 1900 )) {
-				$('#inputDOB').tooltip('show');
-			} else {
-				$('#inputDOB').tooltip('hide');
-			}
-		}
+		pt.DOBparsed = [];
+		pt.DOBparsed[0] = '';
+		pt.DOBparsed[1] = String(dp.selected('month') + 1);
+		pt.DOBparsed[2] = String(dp.selected('day') + 1);
+		pt.DOBparsed[3] = String(dp.selected('year'));
+		pt.DOB = pt.DOBparsed.slice(1, 4).join('/');
 	};
 
 	pt.getAge = function() {
@@ -162,7 +295,6 @@ $(document).ready(function() {
 
 		pt.sex = undef;
 
-		$('#inputDOB').val('');
 		$('#taReport').html('');
 
 		// reset RIGHT side
@@ -273,37 +405,6 @@ $(document).ready(function() {
 
 		boneage.update();
 		boneage.unSelectAll();
-	});
-
-	$('#labelDOB').click(function() {
-		$('#inputDOB').select();
-	});
-
-	$('#inputDOB').on('input', function() {
-		boneage.update();
-		// display error tooltip if invalid DOB
-		if (pt.DOB !== undef && pt.DOB !== null) {
-			if (
-				pt.DOBparsed &&
-				!/[^0-9\/-]/.exec(pt.DOB) &&
-				(pt.DOBparsed[1] > 0 && pt.DOBparsed[1] < 13) &&
-				(pt.DOBparsed[2] > 0 && pt.DOBparsed[2] < 32) &&
-				(pt.DOBparsed[3] < 99 || pt.DOBparsed[3] > 1900)
-			) {
-				$('#inputDOB').tooltip('hide');
-			}
-		} else if (pt.DOB === undef) {
-			$('#inputDOB').tooltip('hide');
-		}
-	});
-
-	$('#inputDOB').blur(function() {
-		pt.getDOB();
-	});
-
-	$('#inputDOB').tooltip({
-		trigger: 'manual',
-		html: true
 	});
 
 	$('#labelReport').click(function() {
