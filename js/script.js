@@ -280,15 +280,21 @@ $(document).ready(function() {
 
 	boneage.reset = function() {
 		// reset LEFT side
-		$('#spanGirl').css({
-			'font-weight': 300,
-			'color': 'white',
+		$('#btnBoy').css({
+			'border-color': '#2b3e50'
+		});
+		$('#spanBoy').css({
+			'font-weight': 100,
+			'color': '#ebebeb',
 			'text-shadow': '0 0 0'
 		});
 
-		$('#spanBoy').css({
-			'font-weight': 300,
-			'color': 'white',
+		$('#btnGirl').css({
+			'border-color': '#2b3e50'
+		});
+		$('#spanGirl').css({
+			'font-weight': 100,
+			'color': '#ebebeb',
 			'text-shadow': '0 0 0'
 		});
 
@@ -363,10 +369,18 @@ $(document).ready(function() {
 
 		slyInit('#divBoy');
 
+		$('#btnBoy').css({
+			'border-color': '#f0ad4e'
+		});
+
 		$('#spanBoy').css({
-			'font-weight': 'bold',
-			'color': 'white',
+			'font-weight': '700',
+			'color': '#ebebeb',
 			'text-shadow': '0 0 0'
+		});
+
+		$('#btnGirl').css({
+			'border-color': '#2b3e50'
 		});
 
 		$('#spanGirl').css({
@@ -388,10 +402,18 @@ $(document).ready(function() {
 
 		slyInit('#divGirl');
 
+		$('#btnGirl').css({
+			'border-color': '#f0ad4e'
+		});
+
 		$('#spanGirl').css({
-			'font-weight': 'bold',
-			'color': 'white',
+			'font-weight': '700',
+			'color': '#ebebeb',
 			'text-shadow': '0 0 0'
+		});
+
+		$('#btnBoy').css({
+			'border-color': '#2b3e50'
 		});
 
 		$('#spanBoy').css({
