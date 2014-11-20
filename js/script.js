@@ -171,16 +171,15 @@ $(document).ready(function() {
 
 		boneage.report =
 			'<b>FINDINGS:</b><br>' +
-			'Study Date: ' + ref.today + '<br>' +
 			'Sex: ' + pt.sex + '<br>' +
+			'Study Date: ' + ref.today + '<br>' +
 			'Date of Birth: ' + pt.DOB + '<br>' +
 			'Chronological Age: ' + strMtoY(pt.age) + '<br>' +
 			'<br>' +
 			'At the chronological age of ' + strMtoY(pt.age) +
 				', using the Brush Foundation data, the mean bone age for calculation is ' +
-				strMtoY(ref.age) + '.<br>' +
-			'<br>' +
-			'Two standard deviations at this age is ' + ref.stdev +
+				strMtoY(ref.age) +
+				'. Two standard deviations at this age is ' + ref.stdev +
 				' months, giving a normal range of ' + strMtoY(ref.range.low) +
 				' to ' + strMtoY(ref.range.high) + ' (+/- 2 standard deviations).' + '<br>' +
 			'<br>' +

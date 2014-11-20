@@ -97,10 +97,11 @@ div#divReport {
 	background: white;
 	color: black;
 	width: 100%;
-	height: 32em;
+	height: 29em;
 	margin-bottom: 4px;
 	overflow-y: auto;
 	overflow-x: hidden;
+	padding: 5px;
 }
 
 #references {
