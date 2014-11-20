@@ -18,7 +18,7 @@
 
 .scrollbar {
 	margin: 5px 0 0 0;
-	height: 2px;
+	height: 8px;
 	background: #4e5d6c;
 	line-height: 0;
 }
@@ -33,7 +33,7 @@
 	position: relative;
 	margin: 1em 0;
 	width: 400px;
-	height: 670px;
+	height: 674px;
 	overflow: hidden;
 	outline: 1px solid #4e5d6c;
 }
