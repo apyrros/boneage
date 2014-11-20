@@ -110,15 +110,17 @@ $(document).ready(function() {
 		dp.month.on('active', updateDays);
 
 		dp.year.on('move', function() {
+			boneage.preselectBoneAge();
 			boneage.update();
 		});
 		dp.month.on('move', function() {
+			boneage.preselectBoneAge();
 			boneage.update();
 		});
 		dp.day.on('move', function() {
+			boneage.preselectBoneAge();
 			boneage.update();
 		});
-
 
 		function updateDays() {
 			var month = dp.selected('month');
@@ -160,6 +162,23 @@ $(document).ready(function() {
 		// expose selected function so you can try it out
 		// window.selected = selected;
 	})();
+
+	// preselect bone age to match chronological age, as a starting point
+	boneage.preselectBoneAge = function() {
+		if (SlyCarousel.initialized) {
+			if (pt.sex === 'male' || pt.sex === 'female') {
+				pt.getAge();
+				var i, len, closestAge = null, closestAgeIndex = null;
+				for (i = 0, len = ref[pt.sex].ages.length; i < len; i++) {
+					if (Math.abs(pt.age - ref[pt.sex].ages[i]) < Math.abs(pt.age - closestAge) || closestAge === null) {
+						closestAge = ref[pt.sex].ages[i];
+						closestAgeIndex = i;
+					}
+				}
+				SlyCarousel.activate(closestAgeIndex);
+			}
+		}
+	};
 
 	boneage.update = function() {
 		pt.getDOB();
@@ -367,6 +386,7 @@ $(document).ready(function() {
 		$('#divGirl').css({'display': 'none'});
 
 		slyInit('#divBoy');
+		boneage.preselectBoneAge();
 
 		$('#btnBoy').css({
 			'border-color': '#f0ad4e'
@@ -400,6 +420,7 @@ $(document).ready(function() {
 		$('#divGirl').css({'display': 'block'});
 
 		slyInit('#divGirl');
+		boneage.preselectBoneAge();
 
 		$('#btnGirl').css({
 			'border-color': '#f0ad4e'
