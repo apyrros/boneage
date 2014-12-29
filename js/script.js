@@ -187,6 +187,7 @@ $(document).ready(function() {
 		ref.getAge();
 		pt.getBoneAge();
 		ref.getStDev();
+		boneage.setHint();
 
 		boneage.report =
 			'<b>FINDINGS:</b><br>' +
@@ -212,6 +213,14 @@ $(document).ready(function() {
 			'The estimated bone age is ' + ref.concl + '.';
 
 		$('#taReport').html(boneage.report);
+	};
+
+	boneage.setHint = function() {
+		var popover = $('#hints').data('bs.popover');
+		popover.options.content = pt.boneAge + '!!';
+		popover.options.title = pt.sex + ': ' + pt.boneAge + ' months';
+		popover.show();
+
 	};
 
 	pt.getDOB = function() {
@@ -386,6 +395,16 @@ $(document).ready(function() {
 	$('#btnReset').click(function() {
 		boneage.reset();
 	});
+
+	$('#hints').popover(
+		{
+			'trigger': 'click',
+			'placement': 'bottom',
+			'title': pt.sex + ': ' + pt.boneAge,
+			'content': this.innerHTML,
+			'html': true,
+		}
+	);
 
 	boneage.update();
 
