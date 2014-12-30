@@ -3,7 +3,24 @@
 "use strict";
 
 var undef = '***',
-	boneage = {},
+	boneage = {
+		male: {
+			hint: {
+				'0': 'No ossification centers seen.',
+				'3': 'Capitate and hamate ossification centers appear.',
+				'6': 'Capitate and hamate ossification centers appear.',
+				'9': 'Capitate and hamate ossification centers appear.',
+				'12': 'Capitate and hamate ossification centers appear.',
+				'15': '<ul><li>Distal radial epiphysis ossification center appears.</ul>',
+				'18': 'Ossification centers generally appear in an orderly pattern:' +
+					'<ol><li>proximal phalanges' +
+					'<li>metacarpals' +
+					'<li>middle phalanges' +
+					'<li>distal phalanges</ol>'
+			}
+		},
+		female: {}
+	},
 	pt = {sex: undef},
 	ref = {
 		male: {
@@ -163,6 +180,11 @@ $(document).ready(function() {
 		// window.selected = selected;
 	})();
 
+	// boneage.init = function() {
+	// 	boneage.male.hint[0] = '<ul><li>No ossification centers seen.</ul>';
+	// 	boneage.male.hint[1]
+	// };
+
 	// preselect bone age to match chronological age, as a starting point
 	boneage.preselectBoneAge = function() {
 		if (SlyCarousel.initialized) {
@@ -217,9 +239,14 @@ $(document).ready(function() {
 
 	boneage.setHint = function() {
 		var popover = $('#hints').data('bs.popover');
-		popover.options.content = pt.boneAge + '!!';
-		popover.options.title = pt.sex + ': ' + pt.boneAge + ' months';
-		popover.show();
+
+		if (pt.sex === 'male' || pt.sex === 'female') {
+			var index = ref[pt.sex].ages.indexOf(pt.boneAge);
+			popover.options.content = boneage[pt.sex].hint[pt.boneAge];
+			popover.options.title = pt.sex + ': ' + strMtoY(pt.boneAge);
+			popover.setContent();
+			popover.$tip.addClass(popover.options.placement);
+		}
 
 	};
 
@@ -398,13 +425,19 @@ $(document).ready(function() {
 
 	$('#hints').popover(
 		{
-			'trigger': 'click',
-			'placement': 'bottom',
-			'title': pt.sex + ': ' + pt.boneAge,
-			'content': this.innerHTML,
+			'trigger': 'manual',
+			'placement': 'left',
 			'html': true,
 		}
 	);
+
+	$('#cbHints').click(function() {
+		if ($('#cbHints').is(':checked')) {
+			$('#hints').popover('show');
+		} else {
+			$('#hints').popover('hide');
+		}
+	});
 
 	boneage.update();
 
