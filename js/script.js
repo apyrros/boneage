@@ -4,22 +4,8 @@
 
 var undef = '***',
 	boneage = {
-		male: {
-			hint: {
-				'0': 'No ossification centers seen.',
-				'3': 'Capitate and hamate ossification centers appear.',
-				'6': 'Capitate and hamate ossification centers appear.',
-				'9': 'Capitate and hamate ossification centers appear.',
-				'12': 'Capitate and hamate ossification centers appear.',
-				'15': '<ul><li>Distal radial epiphysis ossification center appears.</ul>',
-				'18': 'Ossification centers generally appear in an orderly pattern:' +
-					'<ol><li>proximal phalanges' +
-					'<li>metacarpals' +
-					'<li>middle phalanges' +
-					'<li>distal phalanges</ol>'
-			}
-		},
-		female: {}
+		male: {hint: {}},
+		female: {hint: {}}
 	},
 	pt = {sex: undef},
 	ref = {
@@ -180,10 +166,82 @@ $(document).ready(function() {
 		// window.selected = selected;
 	})();
 
-	// boneage.init = function() {
-	// 	boneage.male.hint[0] = '<ul><li>No ossification centers seen.</ul>';
-	// 	boneage.male.hint[1]
-	// };
+	// define hints for each bone age
+	boneage.initHints = function() {
+		var	bmh = boneage.male.hint, bfh = boneage.female.hint;
+
+		bmh[0] = 'No ossification centers seen.';
+		bmh[3] = 'Capitate and hamate ossification centers appear.';
+		bmh[6] = bmh[3];
+		bmh[9] = bmh[3];
+		bmh[12] = bmh[3];
+		bmh[15] = 'Distal radial epiphysis ossification center appears.';
+		bmh[18] = 'Ossification centers generally appear in an orderly pattern:' +
+			'<ol><li>proximal phalanges' +
+			'<li>metacarpals' +
+			'<li>middle phalanges' +
+			'<li>distal phalanges</ol>';
+		bmh[24] = bmh[18];
+		bmh[32] = bmh[18];
+		bmh[36] = '<ul><li>Ossification centers increase in width until they are as wide as the metaphyses.' +
+			'<li>The epiphyses of the ulna and all carpal bones (except the pisiform) appear.</ul>';
+		bmh[42] = bmh[36];
+		bmh[48] = bmh[36];
+		bmh[54] = bmh[36];
+		bmh[60] = bmh[36];
+		bmh[72] = bmh[36];
+		bmh[84] = bmh[36];
+		bmh[96] = bmh[36];
+		bmh[108] = '<ul><li>Epiphyses continue to grow and become wider than the metaphyses.' +
+			'<li>Contours of the epiphyses begin to overlap the metaphyses.' +
+			'<li>The pisiform and abductor pollicis sesamoid appear.</ul>';
+		bmh[120] = bmh[108];
+		bmh[132] = bmh[108];
+		bmh[138] = bmh[108];
+		bmh[150] = bmh[108];
+		bmh[156] = bmh[108];
+		bmh[162] = bmh[108];
+		bmh[168] = 'Epiphyseal fusion tends to occur in an orderly fashion:' +
+			'<ol><li>distal phalanges' +
+			'<li>metacarpals' +
+			'<li>proximal phalanges' +
+			'<li>middle phalanges';
+		bmh[180] = bmh[168];
+		bmh[186] = bmh[168];
+		bmh[192] = bmh[168];
+		bmh[204] = '<ul><li>All carpals, metacarpals, and phalanges are completely developed.' +
+			'<li>Progressive epiphyseal fusion of the ulna and radius occurs.';
+		bmh[216] = bmh[204];
+		bmh[228] = bmh[204];
+
+		bfh[0] = bmh[0];
+		bfh[3] = bmh[3];
+		bfh[6] = bmh[3];
+		bfh[9] = bmh[18];
+		bfh[12] = bmh[18];
+		bfh[15] = bmh[18];
+		bfh[18] = bmh[18];
+		bfh[24] = bmh[36];
+		bfh[30] = bmh[36];
+		bfh[36] = bmh[36];
+		bfh[42] = bmh[36];
+		bfh[50] = bmh[36];
+		bfh[60] = bmh[36];
+		bfh[69] = bmh[36];
+		bfh[82] = bmh[108];
+		bfh[94] = bmh[108];
+		bfh[106] = bmh[108];
+		bfh[120] = bmh[108];
+		bfh[132] = bmh[108];
+		bfh[144] = bmh[108];
+		bfh[156] = bmh[168];
+		bfh[162] = bmh[168];
+		bfh[168] = bmh[168];
+		bfh[180] = bmh[204];
+		bfh[192] = bmh[204];
+		bfh[204] = bmh[204];
+		bfh[216] = bmh[204];
+	};
 
 	// preselect bone age to match chronological age, as a starting point
 	boneage.preselectBoneAge = function() {
@@ -243,19 +301,25 @@ $(document).ready(function() {
 		if (pt.sex === 'male' || pt.sex === 'female') {
 			var index = ref[pt.sex].ages.indexOf(pt.boneAge);
 			popover.options.content = boneage[pt.sex].hint[pt.boneAge];
-			popover.options.title = pt.sex + ': ' + strMtoY(pt.boneAge);
+			popover.options.title = pt.sex + ': ' + strMtoY(pt.boneAge) +
+				'<button id="poClose" class="close" style="float:right" onclick="boneage.poHide();">&times;</button>';
 			popover.setContent();
-			popover.$tip.addClass(popover.options.placement);
 		}
 
+		// if box is checked but popover is hidden ...
+		if ($('#cbHints').is(':checked') && !$("#hints").next('div.popover:visible').length){
+			// ... then show popover
+			popover.show();
+		}
 	};
 
 	pt.getDOB = function() {
-		pt.DOBparsed = [];
-		pt.DOBparsed[0] = '';
-		pt.DOBparsed[1] = String(dp.selected('month') + 1);
-		pt.DOBparsed[2] = String(dp.selected('day') + 1);
-		pt.DOBparsed[3] = String(dp.selected('year'));
+		pt.DOBparsed = [
+			'',
+			String(dp.selected('month') + 1),
+			String(dp.selected('day') + 1),
+			String(dp.selected('year'))
+		];
 		pt.DOB = pt.DOBparsed.slice(1, 4).join('/');
 	};
 
@@ -339,6 +403,7 @@ $(document).ready(function() {
 		$('#h2Instructions').show('slow');
 		$('#divBoy, #divGirl').hide('slow');
 
+		boneage.poHide();
 		boneage.update();
 		boneage.unSelectAll();
 	};
@@ -423,13 +488,11 @@ $(document).ready(function() {
 		boneage.reset();
 	});
 
-	$('#hints').popover(
-		{
-			'trigger': 'manual',
-			'placement': 'left',
-			'html': true,
-		}
-	);
+	$('#hints').popover({
+		'trigger': 'manual',
+		'placement': 'top',
+		'html': true,
+	});
 
 	$('#cbHints').click(function() {
 		if ($('#cbHints').is(':checked')) {
@@ -439,6 +502,12 @@ $(document).ready(function() {
 		}
 	});
 
+	boneage.poHide = function() {
+		$('#hints').popover('hide');
+		$('#cbHints').attr('checked', false);
+	};
+
+	boneage.initHints();
 	boneage.update();
 
 });
