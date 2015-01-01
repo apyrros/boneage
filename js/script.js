@@ -228,12 +228,9 @@ $(document).ready(function() {
 			pt.birthMonth = +pt.DOBparsed[1];
 			pt.birthDay = +pt.DOBparsed[2];
 			pt.birthYear = +pt.DOBparsed[3];
-			if (pt.birthYear < 100) pt.birthYear += 1900;
-			if (pt.birthYear < 1930) pt.birthYear += 100;
 			pt.age = (ref.month + (12 * ref.year)) - (pt.birthMonth + (12 * pt.birthYear));
-			if (ref.day - pt.birthDay > 14) {
-				pt.age += 1;
-			}
+			if (ref.day - pt.birthDay > 14) pt.age += 1;
+			if (ref.day - pt.birthDay < -14) pt.age -= 1;
 		} else {
 			pt.age = undef;
 		}
@@ -266,10 +263,6 @@ $(document).ready(function() {
 		ref.month = Today.getMonth() + 1;
 		ref.day = Today.getDate();
 		ref.year = Today.getFullYear();
-
-		if (ref.day < 10) ref.day = '0' + ref.day;
-		if (ref.month < 10) ref.month = '0' + ref.month;
-
 		ref.today = ref.month + '/' + ref.day + '/' + ref.year;
 	};
 
