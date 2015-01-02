@@ -314,9 +314,9 @@ $(document).ready(function() {
 		$('#taReport').html('');
 
 		// reset RIGHT side
-		$('#h2Instructions').css({'display': 'block'});
-		$('#divBoy').css({'display': 'none'});
-		$('#divGirl').css({'display': 'none'});
+		$('#h2Instructions').show('slow');
+		$('#divBoy').hide('slow');
+		$('#divGirl').hide('slow');
 
 		boneage.unSelectAll();
 		boneage.update();
@@ -374,7 +374,7 @@ $(document).ready(function() {
 	}
 
 	$('#btnBoy').click(function() {
-		$('#h2Instructions').css({'display': 'none'});
+		$('#h2Instructions').hide('slow');
 		$('#divBoy').css({'display': 'block'});
 		$('#divGirl').css({'display': 'none'});
 
@@ -385,21 +385,13 @@ $(document).ready(function() {
 			'border-color': '#f0ad4e'
 		});
 
-		$('#spanBoy').css({
-			'font-weight': '700',
-			'color': '#ebebeb',
-			'text-shadow': '0 0 0'
-		});
+		$('#spanBoy').addClass('selected');
 
 		$('#btnGirl').css({
 			'border-color': '#2b3e50'
 		});
 
-		$('#spanGirl').css({
-			'font-weight': 'normal',
-			'color': 'transparent',
-			'text-shadow': '0 0 2px rgba(200, 200, 200, 1)'
-		});
+		$('#spanGirl').removeClass('selected');
 
 		pt.sex = 'male';
 
@@ -408,7 +400,7 @@ $(document).ready(function() {
 	});
 
 	$('#btnGirl').click(function() {
-		$('#h2Instructions').css({'display': 'none'});
+		$('#h2Instructions').hide('slow');
 		$('#divBoy').css({'display': 'none'});
 		$('#divGirl').css({'display': 'block'});
 
@@ -419,21 +411,13 @@ $(document).ready(function() {
 			'border-color': '#f0ad4e'
 		});
 
-		$('#spanGirl').css({
-			'font-weight': '700',
-			'color': '#ebebeb',
-			'text-shadow': '0 0 0'
-		});
+		$('#spanGirl').addClass('selected');
 
 		$('#btnBoy').css({
 			'border-color': '#2b3e50'
 		});
 
-		$('#spanBoy').css({
-			'font-weight': 'normal',
-			'color': 'transparent',
-			'text-shadow': '0 0 2px rgba(200, 200, 200, 1)'
-		});
+		$('#spanBoy').removeClass('selected');
 
 		pt.sex = 'female';
 

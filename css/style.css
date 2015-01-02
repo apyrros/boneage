@@ -1,114 +1,6 @@
-.frame {
-/*	width: 400px;
-	height: 660px;
-	overflow: hidden;
-	outline: 1px solid #aaa;*/
-}
-.slidee {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-.slidee li {
-	float: left;
-	margin: 0 1px;
-	padding: 0;
-	text-align: center;
-}
-
-.scrollbar {
-	margin: 5px 0 0 0;
-	height: 8px;
-	background: #4e5d6c;
-	line-height: 0;
-}
-
-.scrollbar .handle {
-	height: 100%;
-	background: #f0ad4e;
-	cursor: pointer;
-}
-
-.wrap {
-	position: relative;
-	margin: 1em 0;
-	width: 400px;
-	height: 674px;
-	overflow: hidden;
-	outline: 1px solid #4e5d6c;
-}
-
-img {
-	height: 640px !important;
-	width: auto !important;
-	margin: 0px 0px 0px 0px !important;
-/*	user-drag: none;
-	-moz-user-select: none;
-	-webkit-user-drag: none;*/
-}
-
-div.container {
-	padding-bottom: 10px;
-}
-
-div#left {
-	width: 33%;
-	float: left;
-}
-
-div#right {
-	float: right;
-	width: 67%;
-	padding-left: 20px;
-}
-
-#header {
-	display: block;
-	text-align: left;
-}
-
-#btnBoy {
-	border-style: solid;
-	border-width: 5px;
-	border-color: #2b3e50;
-}
-
-#btnGirl {
-	border-style: solid;
-	border-width: 5px;
-	border-color: #2b3e50;
-}
-
-div#divReport {
-	width: 100%;
-}
-
-#divBoy {
-	font-weight: bold;
-	display: none;
-}
-
-#divGirl {
-	font-weight: bold;
-	display: none;
-}
-
-#taReport {
-	background: white;
-	color: black;
-	width: 100%;
-	height: 29em;
-	margin-bottom: 4px;
-	overflow-y: auto;
-	overflow-x: hidden;
-	padding: 5px;
-	font-weight: 400;
-}
-
-#references {
-	cursor: pointer;
-}
-
+/*	===================
+	| SLY DATE-PICKER |
+	===================	*/
 .date-picker {
 	position: relative;
 	width: 180px;
@@ -157,3 +49,136 @@ div#divReport {
 	font-size: 20px;
 	opacity: 1;
 }
+
+
+/*	==============
+	| SLY IMAGES |
+	==============	*/
+.frame {
+/*	width: 400px;
+	height: 660px;
+	overflow: hidden;
+	outline: 1px solid #aaa;*/
+}
+
+.slidee {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.slidee li {
+	float: left;
+	margin: 0 1px;
+	padding: 0;
+	text-align: center;
+}
+
+.scrollbar {
+	margin: 5px 0 0 0;
+	height: 8px;
+	background: #4e5d6c;
+	line-height: 0;
+}
+
+.scrollbar .handle {
+	height: 100%;
+	background: #f0ad4e;
+	cursor: pointer;
+}
+
+.wrap {
+	position: relative;
+	margin: 1em 0;
+	width: 400px;
+	height: 674px;
+	overflow: hidden;
+	outline: 1px solid #4e5d6c;
+}
+
+img {
+	height: 640px !important;
+	width: auto !important;
+	margin: 0px 0px 0px 0px !important;
+	cursor: pointer;
+/*	user-drag: none;
+	-moz-user-select: none;
+	-webkit-user-drag: none;*/
+}
+
+
+
+/*	========
+	| BODY |
+	========	*/
+#header {
+	display: block;
+	text-align: left;
+}
+
+div.container {
+	padding-bottom: 10px;
+}
+
+div#left {
+	width: 33%;
+	float: left;
+}
+
+div#right {
+	float: right;
+	width: 67%;
+	padding-left: 20px;
+}
+
+#btnBoy {
+	border-style: solid;
+	border-width: 5px;
+	border-color: #2b3e50;
+}
+
+#divBoy {
+	font-weight: bold;
+	display: none;
+}
+
+#btnGirl {
+	border-style: solid;
+	border-width: 5px;
+	border-color: #2b3e50;
+}
+
+#divGirl {
+	font-weight: bold;
+	display: none;
+}
+
+/* when btnBoy/btnGirl is selected */
+.selected {
+	font-weight: bold;
+	color: #ebebeb;
+	text-shadow: 0 0 0;
+}
+
+div#divReport {
+	width: 100%;
+}
+
+#taReport {
+	background: white;
+	color: black;
+	width: 100%;
+	height: 29em;
+	margin-bottom: 4px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	padding: 5px;
+	font-weight: 400;
+}
+
+#references {
+	cursor: pointer;
+}
+
+
+
