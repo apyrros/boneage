@@ -131,36 +131,24 @@ div#right {
 	padding-left: 20px;
 }
 
-#btnBoy {
-	border-style: solid;
-	border-width: 5px;
-	border-color: #2b3e50;
-}
-
-#divBoy {
+#divBoy, #divGirl {
 	font-weight: bold;
 	display: none;
 }
 
-#btnGirl {
+#btnBoy, #btnGirl {
 	border-style: solid;
 	border-width: 5px;
 	border-color: #2b3e50;
-}
-
-#divGirl {
-	font-weight: bold;
-	display: none;
 }
 
 /* when btnBoy/btnGirl is selected */
 .selected {
-	font-weight: bold;
-	color: #ebebeb;
-	text-shadow: 0 0 0;
+	font-weight: bold !important;
+	border-color: #f0ad4e !important;
 }
 
-div#divReport {
+#divReport {
 	width: 100%;
 }
 

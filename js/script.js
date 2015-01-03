@@ -290,36 +290,21 @@ $(document).ready(function() {
 	};
 
 	boneage.reset = function() {
-		// reset LEFT side
-		$('#btnBoy').css({
-			'border-color': '#2b3e50'
-		});
-		$('#spanBoy').css({
-			'font-weight': 100,
-			'color': '#ebebeb',
-			'text-shadow': '0 0 0'
-		});
-
-		$('#btnGirl').css({
-			'border-color': '#2b3e50'
-		});
-		$('#spanGirl').css({
-			'font-weight': 100,
-			'color': '#ebebeb',
-			'text-shadow': '0 0 0'
-		});
-
+		$('#btnBoy,#btnGirl').removeClass('selected');
 		pt.sex = undef;
 
-		$('#taReport').html('');
+		// reset to today's date
+		var d = new Date();
+		dp.month.activate(d.getMonth());
+		dp.day.activate(d.getDate()-1);
+		dp.year.activate(25);
 
 		// reset RIGHT side
 		$('#h2Instructions').show('slow');
-		$('#divBoy').hide('slow');
-		$('#divGirl').hide('slow');
+		$('#divBoy, #divGirl').hide('slow');
 
-		boneage.unSelectAll();
 		boneage.update();
+		boneage.unSelectAll();
 	};
 
 	boneage.selectAll = function() {
@@ -373,72 +358,33 @@ $(document).ready(function() {
 		});
 	}
 
-	$('#btnBoy').click(function() {
+	// when user selects sex
+	$('#divSex button').click(function() {
+		var sex = this.id.substr(3,4);
 		$('#h2Instructions').hide('slow');
-		$('#divBoy').css({'display': 'block'});
-		$('#divGirl').css({'display': 'none'});
+		// cannot use $.hide()/show() due to block
+		$('#div'+sex).css('display', 'block')
+			.siblings('.frame').css('display', 'none');
 
-		slyInit('#divBoy');
+		slyInit('#div'+sex);
 		boneage.preselectBoneAge();
 
-		$('#btnBoy').css({
-			'border-color': '#f0ad4e'
-		});
+		$('#btn'+sex).addClass('selected')
+			.siblings('button').removeClass('selected');
 
-		$('#spanBoy').addClass('selected');
-
-		$('#btnGirl').css({
-			'border-color': '#2b3e50'
-		});
-
-		$('#spanGirl').removeClass('selected');
-
-		pt.sex = 'male';
+		if (sex === "Boy") pt.sex = 'male';
+		if (sex === "Girl") pt.sex = 'female';
 
 		boneage.update();
 		boneage.unSelectAll();
 	});
 
-	$('#btnGirl').click(function() {
-		$('#h2Instructions').hide('slow');
-		$('#divBoy').css({'display': 'none'});
-		$('#divGirl').css({'display': 'block'});
-
-		slyInit('#divGirl');
-		boneage.preselectBoneAge();
-
-		$('#btnGirl').css({
-			'border-color': '#f0ad4e'
-		});
-
-		$('#spanGirl').addClass('selected');
-
-		$('#btnBoy').css({
-			'border-color': '#2b3e50'
-		});
-
-		$('#spanBoy').removeClass('selected');
-
-		pt.sex = 'female';
-
-		boneage.update();
-		boneage.unSelectAll();
-	});
-
-	$('#labelReport').click(function() {
-		boneage.selectAll();
-	});
-
-	$('#btnSelectAll').click(function() {
+	$('#labelReport, #btnSelectAll').click(function() {
 		boneage.selectAll();
 	});
 
 	$('#btnReset').click(function() {
 		boneage.reset();
-	});
-
-	$('#references').popover({
-		html: true
 	});
 
 	boneage.update();
