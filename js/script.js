@@ -296,7 +296,7 @@ $(document).ready(function() {
 	};
 
 	boneage.setHint = function() {
-		var popover = $('#hints').data('bs.popover');
+		var popover = $('#wrap').data('bs.popover');
 
 		if (pt.sex === 'male' || pt.sex === 'female') {
 			var index = ref[pt.sex].ages.indexOf(pt.boneAge);
@@ -307,7 +307,7 @@ $(document).ready(function() {
 		}
 
 		// if box is checked but popover is hidden ...
-		if ($('#cbHints').is(':checked') && !$("#hints").next('div.popover:visible').length){
+		if ($('#cbHints').is(':checked') && !$("#wrap").next('div.popover:visible').length){
 			// ... then show popover
 			popover.show();
 		}
@@ -488,22 +488,22 @@ $(document).ready(function() {
 		boneage.reset();
 	});
 
-	$('#hints').popover({
+	$('#wrap').popover({
 		'trigger': 'manual',
-		'placement': 'top',
+		'placement': 'left',
 		'html': true,
 	});
 
 	$('#cbHints').click(function() {
 		if ($('#cbHints').is(':checked')) {
-			$('#hints').popover('show');
+			$('#wrap').popover('show');
 		} else {
-			$('#hints').popover('hide');
+			$('#wrap').popover('hide');
 		}
 	});
 
 	boneage.poHide = function() {
-		$('#hints').popover('hide');
+		$('#wrap').popover('hide');
 		$('#cbHints').attr('checked', false);
 	};
 
