@@ -170,16 +170,22 @@
 			</ul>
 		</div class="frame" id="divGirl">
 
+	<div style="width:400px;padding-left:5px; padding-right:5px" id="prevnext">
+		<a href="javascript:SlyCarousel.activate(SlyCarousel.rel.activeItem-1)">Prev</a>
+		<a href="javascript:SlyCarousel.activate(SlyCarousel.rel.activeItem+1)"style="float:right">Next</a>
+	</div>
+
 		<!-- common scrollbar, initiated uniquely for boys and girls -->
 		<div class="scrollbar" id="sbCommon">
 			<div class="handle"></div>
 		</div>
 
 	</div class="wrap">
-		<div id="tooltip">
-			<input type="checkbox" id="cbHints">
-			<label for="cbHints" id="hints" class="h4">Hints</label>
-		</div>
+
+	<div id="tooltip">
+		<input type="checkbox" id="cbHints">
+		<label for="cbHints" id="hints" class="h4">Hints</label>
+	</div>
 </div id="right">
 
 <!-- jQuery: http://jquery.com/ -->

@@ -401,6 +401,7 @@ $(document).ready(function() {
 
 		// reset RIGHT side
 		$('#h2Instructions').show('slow');
+		$('#prevnext').hide('slow');
 		$('#divBoy, #divGirl').hide('slow');
 
 		boneage.poHide();
@@ -463,6 +464,7 @@ $(document).ready(function() {
 	$('#divSex button').click(function() {
 		var sex = this.id.substr(3,4);
 		$('#h2Instructions').hide('slow');
+		$('#prevnext').show('slow');
 		// cannot use $.hide()/show() due to block
 		$('#div'+sex).css('display', 'block')
 			.siblings('.frame').css('display', 'none');

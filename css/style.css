@@ -91,7 +91,7 @@
 	position: relative;
 	margin: 1em 0;
 	width: 400px;
-	height: 674px;
+	height: 695px;
 	overflow: hidden;
 	outline: 1px solid #4e5d6c;
 }
@@ -168,5 +168,7 @@ div#right {
 	cursor: pointer;
 }
 
-
+#prevnext {
+	display: none;
+}
 
