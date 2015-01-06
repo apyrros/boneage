@@ -496,6 +496,16 @@ $(document).ready(function() {
 		'html': true,
 	});
 
+	$('#prev').click(function() {
+		SlyCarousel.activate(SlyCarousel.rel.activeItem-1);
+		this.blur();
+	});
+
+	$('#next').click(function() {
+		SlyCarousel.activate(SlyCarousel.rel.activeItem+1);
+		this.blur();
+	});
+
 	$('#cbHints').click(function() {
 		if ($('#cbHints').is(':checked')) {
 			$('#wrap').popover('show');
