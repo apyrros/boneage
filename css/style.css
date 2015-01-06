@@ -59,6 +59,7 @@
 	height: 660px;
 	overflow: hidden;
 	outline: 1px solid #aaa;*/
+	cursor: pointer;
 }
 
 .slidee {
@@ -100,10 +101,6 @@ img {
 	height: 640px !important;
 	width: auto !important;
 	margin: 0px 0px 0px 0px !important;
-	cursor: pointer;
-/*	user-drag: none;
-	-moz-user-select: none;
-	-webkit-user-drag: none;*/
 }
 
 
