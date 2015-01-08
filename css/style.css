@@ -153,7 +153,6 @@ div#left {
 div#right {
 	float: right;
 	width: 67%;
-	padding-left: 20px;
 }
 
 #divBoy, #divGirl {
@@ -190,4 +189,17 @@ div#right {
 
 .popover-title {
 	font-weight: bold !important;
+}
+
+.noselect {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+label {
+	margin-top: 15px !important;
 }
